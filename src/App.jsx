@@ -5,9 +5,11 @@ import "./App.css"; // Add your CSS styles here
 const App = () => {
   const [content, setContent] = useState([]);
   const [question, setQuestion] = useState("");
+  const [loading, setLoading] = useState(false); // New loading state
 
   async function gen() {
     console.log('Loading...');
+    setLoading(true); // Set loading to true when the request starts
 
     const respon = await axios({
       url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCvrZwr6CK5hbsPW-AwG3FjVPkPLEU4AgY",
@@ -25,7 +27,8 @@ const App = () => {
     console.log(newConversation);
 
     setContent(newConversation);
-    setQuestion("");
+    setQuestion(""); // Clear the input field
+    setLoading(false); // Set loading to false when the request is done
   }
 
   const messageStyle = (role) => ({
@@ -34,29 +37,23 @@ const App = () => {
 
   return (
     <div className="res">
+      <div>
+        <div className='ans'>
+          {content.map((message, index) => (
+            <div key={index}>
+              <p style={messageStyle(message.role)}>{message.text}</p>
+            </div>
+          ))}
+          {loading && <p className="loading">...</p>} {/* Show loading animation */}
+        </div>
 
-      <div >
-            <div className='ans'>
-        {content.map((message, index) => (
-          <div>
-          <p key={index} style={messageStyle(message.role)}>{message.text}</p>
-          </div>
-        ))}
+        <div className='quotation-box'>
+          <input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />
+          <button onClick={gen}>ASK</button>
+        </div>
       </div>
-
-      <div className='quotation-box'>
-        <input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />
-        <button onClick={gen}>ASK</button>
-      </div>
-      </div>
-
-      </div>
+    </div>
   );
 };
 
 export default App;
-
-
-
-
-  

@@ -1,75 +1,100 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    position: relative;
-    overflow-x: hidden;
 }
 
-body{
-    background-color: #454545;
+body {
+    background-color: #f0f0f0; /* Light background for better contrast */
+    font-family: 'Arial', sans-serif; /* Use a clean font */
 }
 
-
-.first-box{
-    width: 100%;
-    height: 80%;
-    padding: 10px;
-    margin-bottom: 50px;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    scroll-snap-type: none;
-
+.res {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height */
+    justify-content: flex-end; /* Align items to the bottom */
+    padding: 20px; /* Add padding around the main container */
 }
 
+.ans {
+    flex: 1; /* Take up remaining space */
+    padding: 20px;
+    overflow-y: auto; /* Scrollable area for messages */
+    background-color: #ffffff; /* White background for messages */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+    margin-bottom: 10px; /* Space from the input box */
+    display: flex;
+    flex-direction: column; /* Stack messages vertically */
+}
 
+.message {
+    max-width: 75%; /* Limit message width */
+    padding: 12px 15px; /* Padding for messages */
+    border-radius: 20px; /* Rounded corners for messages */
+    margin: 10px 0; /* Vertical margin for spacing between messages */
+    font-size: 16px; /* Font size for messages */
+    line-height: 1.5; /* Line height for better readability */
+}
 
+.user {
+    background-color: #d1e7dd; /* User message background */
+    align-self: flex-end; /* Align user messages to the right */
+    border-bottom-right-radius: 0; /* Remove bottom right radius */
+}
 
-.quotation-box{
-    background-color: #615555;
-    width: 100%;
-    height: 10%;
-    padding: 17px 15px;
-    margin-top: 2px;
+.ai {
+    background-color: #f8d7da; /* AI message background */
+    align-self: flex-start; /* Align AI messages to the left */
+    border-bottom-left-radius: 0; /* Remove bottom left radius */
+}
+
+.quotation-box {
+    background-color: #615555; /* Darker background for input area */
+    padding: 15px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    gap: 10px;
-    overflow-x: hidden;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-
-    
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.quotation-box input{
-    width: 80%;
-
+.quotation-box input {
+    flex: 1; /* Take up remaining space */
     outline: none;
     border: none;
     border-radius: 5px;
-    padding: 5px 8px;
-    box-shadow: 0px 0px 10px rgb(85, 81, 81);
+    padding: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    font-size: 16px; /* Larger font size */
+    margin-right: 10px; /* Space between input and button */
 }
 
-.quotation-box button{
-    width: 20%;
-    padding: 5px 8px;
+.quotation-box button {
+    padding: 10px 15px; /* Padding for button */
     border: none;
-
     border-radius: 5px;
-    box-shadow: 0px 0px 10px rgb(85, 81, 81);
-
+    background-color: #4CAF50; /* Green background for button */
+    color: white; /* White text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+    font-size: 16px; /* Font size for button */
 }
 
-.ans p{
+.quotation-box button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.loading {
     font-size: 20px;
     padding: 10px;
     margin: 10px;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    animation: blink 1s infinite;
+    color: #888; /* Grey color for loading text */
 }
 
-
-
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
